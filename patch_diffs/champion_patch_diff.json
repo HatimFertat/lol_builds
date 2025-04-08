@@ -35,21 +35,21 @@
         "new_value": "26/23.5/21/18.5/16",
         "old_value": "24/21.5/19/16.5/14"
       },
-      "root['spells'][2]['cooldown'][4]": {
-        "new_value": 16,
-        "old_value": 14
-      },
       "root['spells'][2]['cooldown'][1]": {
         "new_value": 23.5,
         "old_value": 21.5
       },
-      "root['spells'][2]['cooldown'][2]": {
-        "new_value": 21,
-        "old_value": 19
-      },
       "root['spells'][2]['cooldown'][0]": {
         "new_value": 26,
         "old_value": 24
+      },
+      "root['spells'][2]['cooldown'][4]": {
+        "new_value": 16,
+        "old_value": 14
+      },
+      "root['spells'][2]['cooldown'][2]": {
+        "new_value": 21,
+        "old_value": 19
       },
       "root['spells'][2]['cooldown'][3]": {
         "new_value": 18.5,
@@ -449,290 +449,6 @@
         "new_value": 4.5,
         "old_value": 5.2
       },
-      "root['spells'][1]": {
-        "new_value": {
-          "id": "YorickW",
-          "name": "Dark Procession",
-          "description": "Yorick summons a destructible wall at target location that will block enemy movement.",
-          "tooltip": "Yorick summons a wall of spirits blocking enemies' path, but not allies'. The wall has <healing>{{ wallhealthtooltip }} Health</healing> and disappears after {{ circleduration }} seconds.{{ spellmodifierdescriptionappend }}",
-          "leveltip": {
-            "label": [
-              "Cooldown",
-              "Health"
-            ],
-            "effect": [
-              "{{ cooldown }} -> {{ cooldownNL }}",
-              "{{ wallhealthtooltip }} -> {{ wallhealthtooltipNL }}"
-            ]
-          },
-          "maxrank": 5,
-          "cooldown": [
-            20,
-            18,
-            16,
-            14,
-            12
-          ],
-          "cooldownBurn": "20/18/16/14/12",
-          "cost": [
-            70,
-            70,
-            70,
-            70,
-            70
-          ],
-          "costBurn": "70",
-          "datavalues": {},
-          "effect": [
-            null,
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
-          ],
-          "effectBurn": [
-            null,
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0"
-          ],
-          "vars": [],
-          "costType": " {{ abilityresourcename }}",
-          "maxammo": "-1",
-          "range": [
-            600,
-            600,
-            600,
-            600,
-            600
-          ],
-          "rangeBurn": "600",
-          "image": {
-            "full": "YorickW.png",
-            "sprite": "spell16.png",
-            "group": "spell",
-            "x": 144,
-            "y": 96,
-            "w": 48,
-            "h": 48
-          },
-          "resource": "{{ cost }} {{ abilityresourcename }}"
-        },
-        "old_value": {
-          "id": "YorickW",
-          "name": "Dark Procession",
-          "description": "Yorick summons a destructible wall at target location that will block enemy movement.",
-          "tooltip": "Yorick summons a wall of spirits blocking enemies' path, but not allies'. The wall can be Attacked, and disappears after {{ e5 }} hits.{{ spellmodifierdescriptionappend }}",
-          "leveltip": {
-            "label": [
-              "Cooldown",
-              "Health"
-            ],
-            "effect": [
-              "{{ cooldown }} -> {{ cooldownNL }}",
-              "{{ e5 }} -> {{ e5NL }}"
-            ]
-          },
-          "maxrank": 5,
-          "cooldown": [
-            20,
-            18,
-            16,
-            14,
-            12
-          ],
-          "cooldownBurn": "20/18/16/14/12",
-          "cost": [
-            70,
-            70,
-            70,
-            70,
-            70
-          ],
-          "costBurn": "70",
-          "datavalues": {},
-          "effect": [
-            null,
-            [
-              4,
-              4,
-              4,
-              4,
-              4
-            ],
-            [
-              18,
-              18,
-              18,
-              18,
-              18
-            ],
-            [
-              0.75,
-              0.75,
-              0.75,
-              0.75,
-              0.75
-            ],
-            [
-              0,
-              0,
-              1,
-              1,
-              2
-            ],
-            [
-              2,
-              2,
-              3,
-              3,
-              4
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
-          ],
-          "effectBurn": [
-            null,
-            "4",
-            "18",
-            "0.75",
-            "0/0/1/1/2",
-            "2/2/3/3/4",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0"
-          ],
-          "vars": [],
-          "costType": " {{ abilityresourcename }}",
-          "maxammo": "-1",
-          "range": [
-            600,
-            600,
-            600,
-            600,
-            600
-          ],
-          "rangeBurn": "600",
-          "image": {
-            "full": "YorickW.png",
-            "sprite": "spell16.png",
-            "group": "spell",
-            "x": 144,
-            "y": 96,
-            "w": 48,
-            "h": 48
-          },
-          "resource": "{{ cost }} {{ abilityresourcename }}"
-        }
-      },
       "root['spells'][2]": {
         "new_value": {
           "id": "YorickE",
@@ -1018,6 +734,290 @@
             "sprite": "spell16.png",
             "group": "spell",
             "x": 192,
+            "y": 96,
+            "w": 48,
+            "h": 48
+          },
+          "resource": "{{ cost }} {{ abilityresourcename }}"
+        }
+      },
+      "root['spells'][1]": {
+        "new_value": {
+          "id": "YorickW",
+          "name": "Dark Procession",
+          "description": "Yorick summons a destructible wall at target location that will block enemy movement.",
+          "tooltip": "Yorick summons a wall of spirits blocking enemies' path, but not allies'. The wall has <healing>{{ wallhealthtooltip }} Health</healing> and disappears after {{ circleduration }} seconds.{{ spellmodifierdescriptionappend }}",
+          "leveltip": {
+            "label": [
+              "Cooldown",
+              "Health"
+            ],
+            "effect": [
+              "{{ cooldown }} -> {{ cooldownNL }}",
+              "{{ wallhealthtooltip }} -> {{ wallhealthtooltipNL }}"
+            ]
+          },
+          "maxrank": 5,
+          "cooldown": [
+            20,
+            18,
+            16,
+            14,
+            12
+          ],
+          "cooldownBurn": "20/18/16/14/12",
+          "cost": [
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "costBurn": "70",
+          "datavalues": {},
+          "effect": [
+            null,
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "effectBurn": [
+            null,
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "vars": [],
+          "costType": " {{ abilityresourcename }}",
+          "maxammo": "-1",
+          "range": [
+            600,
+            600,
+            600,
+            600,
+            600
+          ],
+          "rangeBurn": "600",
+          "image": {
+            "full": "YorickW.png",
+            "sprite": "spell16.png",
+            "group": "spell",
+            "x": 144,
+            "y": 96,
+            "w": 48,
+            "h": 48
+          },
+          "resource": "{{ cost }} {{ abilityresourcename }}"
+        },
+        "old_value": {
+          "id": "YorickW",
+          "name": "Dark Procession",
+          "description": "Yorick summons a destructible wall at target location that will block enemy movement.",
+          "tooltip": "Yorick summons a wall of spirits blocking enemies' path, but not allies'. The wall can be Attacked, and disappears after {{ e5 }} hits.{{ spellmodifierdescriptionappend }}",
+          "leveltip": {
+            "label": [
+              "Cooldown",
+              "Health"
+            ],
+            "effect": [
+              "{{ cooldown }} -> {{ cooldownNL }}",
+              "{{ e5 }} -> {{ e5NL }}"
+            ]
+          },
+          "maxrank": 5,
+          "cooldown": [
+            20,
+            18,
+            16,
+            14,
+            12
+          ],
+          "cooldownBurn": "20/18/16/14/12",
+          "cost": [
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "costBurn": "70",
+          "datavalues": {},
+          "effect": [
+            null,
+            [
+              4,
+              4,
+              4,
+              4,
+              4
+            ],
+            [
+              18,
+              18,
+              18,
+              18,
+              18
+            ],
+            [
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              2
+            ],
+            [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "effectBurn": [
+            null,
+            "4",
+            "18",
+            "0.75",
+            "0/0/1/1/2",
+            "2/2/3/3/4",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "vars": [],
+          "costType": " {{ abilityresourcename }}",
+          "maxammo": "-1",
+          "range": [
+            600,
+            600,
+            600,
+            600,
+            600
+          ],
+          "rangeBurn": "600",
+          "image": {
+            "full": "YorickW.png",
+            "sprite": "spell16.png",
+            "group": "spell",
+            "x": 144,
             "y": 96,
             "w": 48,
             "h": 48

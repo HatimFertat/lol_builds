@@ -2,6 +2,7 @@ import requests
 import json
 from deepdiff import DeepDiff
 import os
+from config import CURRENT_PATCH, PREVIOUS_PATCH
 
 # Base URLs
 BASE_URL = "https://ddragon.leagueoflegends.com/cdn/{patch}/data/en_US/"
@@ -9,8 +10,6 @@ CHAMPION_URL = BASE_URL + "championFull.json"
 ITEM_URL = BASE_URL + "item.json"
 
 # Config
-CURRENT_PATCH = "15.7.1"  # Set manually for now
-PREVIOUS_PATCH = "15.6.1"  # Set manually for now
 OUTPUT_DIR = "patch_diffs"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -20,6 +19,21 @@ def download_json(url):
     r = requests.get(url)
     r.raise_for_status()
     return r.json()
+
+def get_item_mapping(patch_version):
+    """Fetch item mapping from Data Dragon."""
+    url = ITEM_URL.format(patch=patch_version)
+    data = download_json(url)
+    items = data.get("data", {})
+    
+    item_mapping = {}
+    for item_id, item_info in items.items():
+        item_mapping[int(item_id)] = {
+            "name": item_info.get("name"),
+            "description": item_info.get("description"),
+            "plaintext": item_info.get("plaintext")
+        }
+    return item_mapping
 
 def save_diff(diff, filename):
     if isinstance(diff, dict):
@@ -63,6 +77,12 @@ def main():
 
     save_diff(champion_diffs, "champion_patch_diff.json")
     save_diff(item_diffs, "item_patch_diff.json")
+
+    # Save item mapping separately
+    item_mapping = get_item_mapping(CURRENT_PATCH)
+    with open(os.path.join(OUTPUT_DIR, "item_mapping.json"), "w") as f:
+        json.dump(item_mapping, f, indent=2)
+    print(f"Item mapping saved in {OUTPUT_DIR}/item_mapping.json")
 
     print(f"Patch diffs saved in {OUTPUT_DIR}")
 

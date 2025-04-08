@@ -25,3 +25,5 @@ RANKED_SOLO_QUEUE_ID = 420
 # Define the start of the current patch (Unix timestamp).
 # Update this timestamp at each new patch cycle.
 CURRENT_PATCH_START = 1743552000  # example timestamp, update per patch
+CURRENT_PATCH = "15.7.1"  # Current patch version
+PREVIOUS_PATCH = "15.6.1"  # Previous patch version

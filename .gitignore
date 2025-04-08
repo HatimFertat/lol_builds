@@ -177,3 +177,6 @@ cython_debug/
 .DS_Store
 .python-version
 *.db
+*.csv
+*.jsonl
+uv.lock

@@ -54,7 +54,7 @@ def main():
     threads = []
     for region in args.regions:
         logger.info(f"Processing region: {region}")
-        t = threading.Thread(target=process_region, args=(region, init_db(), routing_limiters), daemon=True)
+        t = threading.Thread(target=process_region, args=(region, routing_limiters), daemon=True)
         t.start()
         threads.append(t)
 
