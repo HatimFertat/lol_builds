@@ -84,6 +84,10 @@ def init_db(db_path="data/matches.db"):
         ally_champions_2 TEXT,
         enemy_champions_1 TEXT,
         enemy_champions_2 TEXT,
+        runes_1 TEXT,
+        runes_2 TEXT,
+        summoner_spells_1 TEXT,
+        summoner_spells_2 TEXT,
         PRIMARY KEY (match_id, lane)
     )
     ''')
@@ -106,7 +110,7 @@ def insert_match_record(conn, record):
      longest_time_living_1, longest_time_living_2, champ_experience_1, champ_experience_2, time_played_1, time_played_2,
      match_duration, first_blood_kill_1, first_blood_kill_2, first_blood_assist_1, first_blood_assist_2,
      gold_per_minute_1, gold_per_minute_2, xp_diff_per_minute_1, xp_diff_per_minute_2, ally_champions_1,
-     ally_champions_2, enemy_champions_1, enemy_champions_2)
+     ally_champions_2, enemy_champions_1, enemy_champions_2, runes_1, runes_2, summoner_spells_1, summoner_spells_2)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
         record.get("match_id"),
@@ -187,6 +191,10 @@ def insert_match_record(conn, record):
         str(record.get("ally_champions_1")),
         str(record.get("ally_champions_2")),
         str(record.get("enemy_champions_1")),
-        str(record.get("enemy_champions_2"))
+        str(record.get("enemy_champions_2")),
+        str(record.get("runes_1")),
+        str(record.get("runes_2")),
+        str(record.get("summoner_spells_1")),
+        str(record.get("summoner_spells_2"))
     ))
     conn.commit()

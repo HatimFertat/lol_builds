@@ -73,6 +73,63 @@ def flatten_items_by_phase(item_list, item_mapping):
 
     return early, mid, late
 
+def load_champion_tags():
+    """Load champion roles from file."""
+    with open("patch_diffs/champion_tags.json", "r") as f:
+        tag_data = json.load(f)
+
+    # Build name -> roles mapping
+    name_to_roles = {}
+    for champ in tag_data:
+        name = champ["name"].strip().title()
+        roles = champ.get("roles", [])
+        name_to_roles[name] = roles
+    return name_to_roles
+
+def format_champion_with_roles(name, roles, lane):
+    """Format champion name with roles, dynamically excluding 'Support' unless played in SUPPORT lane."""
+    if not roles:
+        return name
+    processed_roles = []
+    for role in roles:
+        if role.lower() == "support":
+            if lane == "SUPPORT" or "SUPPORT" in lane:
+                processed_roles.append(role)
+        else:
+            processed_roles.append(role)
+    if not processed_roles:
+        return name
+    role_str = "/".join(processed_roles)
+    return f"{name} ({role_str})"
+
+def load_runes_and_spells():
+    """Load rune and summoner spell mappings from files."""
+    with open("patch_diffs/runes_mapping.json", "r") as f:
+        runes_mapping = json.load(f)
+        runes_mapping = {int(k): v for k, v in runes_mapping.items()}
+    with open("patch_diffs/summoner_spells_mapping.json", "r") as f:
+        spells_mapping = json.load(f)
+        spells_mapping = {int(k): v for k, v in spells_mapping.items()}
+    return runes_mapping, spells_mapping
+
+def map_runes(rune_list, runes_mapping):
+    """Map rune IDs to names."""
+    if isinstance(rune_list, str):
+        rune_list = ast.literal_eval(rune_list)
+    return [runes_mapping.get(rune_id, f"UnknownRune{rune_id}") for rune_id in rune_list]
+
+def map_spells(spell_list, spells_mapping):
+    """Map spell IDs to names."""
+    if isinstance(spell_list, str):
+        spell_list = ast.literal_eval(spell_list)
+    return [spells_mapping.get(spell_id, f"UnknownSpell{spell_id}") for spell_id in spell_list]
+
+def extract_keystone(runes):
+    """Extract only the first rune (keystone) from the list."""
+    if isinstance(runes, str):
+        runes = ast.literal_eval(runes)
+    return runes[0] if runes else "UnknownKeystone"
+
 def main():
     print("Loading raw database...")
     df = load_data()
@@ -85,12 +142,32 @@ def main():
     df["champion_1"] = df["champion_1"].str.strip().str.title()
     df["champion_2"] = df["champion_2"].str.strip().str.title()
 
+    print("Loading champion tags...")
+    champion_tags = load_champion_tags()
+
+    print("Applying champion roles to names...")
+    df["champion_1"] = df.apply(lambda row: format_champion_with_roles(row["champion_1"], champion_tags.get(row["champion_1"], []), row["lane"]), axis=1)
+    df["champion_2"] = df.apply(lambda row: format_champion_with_roles(row["champion_2"], champion_tags.get(row["champion_2"], []), row["lane"]), axis=1)
+
+    print("Loading rune and spell mappings...")
+    runes_mapping, spells_mapping = load_runes_and_spells()
+
+    print("Mapping runes and summoner spells...")
+    df["runes_1"] = df["runes_1"].apply(lambda x: map_runes(x, runes_mapping))
+    df["runes_2"] = df["runes_2"].apply(lambda x: map_runes(x, runes_mapping))
+    df["summoner_spells_1"] = df["summoner_spells_1"].apply(lambda x: map_spells(x, spells_mapping))
+    df["summoner_spells_2"] = df["summoner_spells_2"].apply(lambda x: map_spells(x, spells_mapping))
+
+    print("Extracting keystones...")
+    df["keystone_1"] = df["runes_1"].apply(extract_keystone)
+    df["keystone_2"] = df["runes_2"].apply(extract_keystone)
+
+    print("Processing items...")
     print("Loading item mapping from file...")
     with open("patch_diffs/item_mapping.json", "r") as f:
         item_mapping = json.load(f)
     item_mapping = {int(k): v for k, v in item_mapping.items()}
 
-    print("Processing items...")
     early_mid_late_1 = df["items_1"].apply(lambda x: flatten_items_by_phase(x, item_mapping))
     early_mid_late_2 = df["items_2"].apply(lambda x: flatten_items_by_phase(x, item_mapping))
 
@@ -103,7 +180,10 @@ def main():
     "ally_champions_1", "enemy_champions_1",
     "ally_champions_2", "enemy_champions_2",
     "items_1_early", "items_1_mid", "items_1_late",
-    "items_2_early", "items_2_mid", "items_2_late"
+    "items_2_early", "items_2_mid", "items_2_late",
+    "keystone_1", "keystone_2",
+    "runes_1", "runes_2",
+    "summoner_spells_1", "summoner_spells_2"
     ]
 
     llm_df = df[columns_to_flip]
@@ -122,6 +202,12 @@ def main():
         "items_2_early": "items_1_early",
         "items_2_mid": "items_1_mid",
         "items_2_late": "items_1_late",
+        "keystone_1": "keystone_2",
+        "keystone_2": "keystone_1",
+        "runes_1": "runes_2",
+        "runes_2": "runes_1",
+        "summoner_spells_1": "summoner_spells_2",
+        "summoner_spells_2": "summoner_spells_1",
     })
     
     columns_to_keep = [
@@ -129,6 +215,9 @@ def main():
     "ally_champions_1", "enemy_champions_1",
     "ally_champions_2", "enemy_champions_2",
     "items_1_early", "items_1_mid", "items_1_late",
+    "keystone_1", "keystone_2",
+    "runes_1", "runes_2",
+    "summoner_spells_1", "summoner_spells_2"
     ]
 
     llm_df = pd.concat([llm_df, flipped_df], ignore_index=True)[columns_to_keep]

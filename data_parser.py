@@ -175,12 +175,39 @@ def parse_match_data(match_detail, timeline):
             record["gold_spent_1"] = p1.get("goldSpent")
             record["gold_spent_2"] = p2.get("goldSpent")
 
+            # Summoner spells and runes
+            runes_1, spells_1 = extract_runes_and_spells(p1)
+            runes_2, spells_2 = extract_runes_and_spells(p2)
+            record["runes_1"] = runes_1
+            record["runes_2"] = runes_2
+            record["summoner_spells_1"] = spells_1
+            record["summoner_spells_2"] = spells_2
+
             # Extract item purchase timeline for each participant
             record["items_1"] = parse_item_events(timeline, p1.get("participantId"))
             record["items_2"] = parse_item_events(timeline, p2.get("participantId"))
 
             matchup_records.append(record)
     return matchup_records
+
+# Summoner spells and rune extraction helper
+def extract_runes_and_spells(participant):
+    """
+    Extract full runes and summoner spells from a participant's data.
+    """
+    runes = []
+    perks = participant.get("perks", {})
+    styles = perks.get("styles", [])
+    for style in styles:
+        selections = style.get("selections", [])
+        for sel in selections:
+            runes.append(sel.get("perk"))
+
+    spells = [
+        participant.get("summoner1Id"),
+        participant.get("summoner2Id")
+    ]
+    return runes, spells
 
 def parse_item_events(timeline, participant_id):
     """

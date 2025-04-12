@@ -1,0 +1,93 @@
+{
+  "Aurora": [
+    "Aurora spell 1 description changed across ranks."
+  ],
+  "Belveth": [
+    "Belveth spell 3 label changed across ranks."
+  ],
+  "Darius": [
+    "Darius spell 2 updated.",
+    "Darius armor 39 \u2192 37"
+  ],
+  "DrMundo": [
+    "DrMundo spell 3 label changed across ranks."
+  ],
+  "Graves": [
+    "Graves passive description changed across ranks."
+  ],
+  "Gwen": [
+    "Gwen hp 650 \u2192 620",
+    "Gwen armor 39 \u2192 36"
+  ],
+  "Leblanc": [
+    "Leblanc gameplay data updated.",
+    "Leblanc spell 1 effect changed across ranks."
+  ],
+  "Lillia": [
+    "Lillia had 2 gameplay-related changes."
+  ],
+  "Lulu": [
+    "Lulu gameplay data updated.",
+    "Lulu spell 1 cooldownBurn changed across ranks.",
+    "Lulu spell 3 label changed across ranks.",
+    "Lulu passive effect changed across ranks."
+  ],
+  "Naafiri": [
+    "Naafiri 'hpregen' type changed.",
+    "Naafiri 3 type changed.",
+    "Naafiri 1 type changed.",
+    "Naafiri spell 1 cooldownBurn changed across ranks.",
+    "Naafiri hp 635 \u2192 610",
+    "Naafiri armor 30 \u2192 28",
+    "Naafiri hpregenperlevel 0.9 \u2192 0.7",
+    "Naafiri attackdamage 57 \u2192 55"
+  ],
+  "Nasus": [
+    "Nasus spell 3 label changed across ranks."
+  ],
+  "Neeko": [
+    "Neeko item description updated with functional change.",
+    "Neeko spell 1 description changed across ranks.",
+    "Neeko spell 3 description changed across ranks."
+  ],
+  "Renekton": [
+    "Renekton spell 3 label changed across ranks."
+  ],
+  "Shyvana": [
+    "Shyvana spell 3 label changed across ranks."
+  ],
+  "Trundle": [
+    "Trundle had 2 gameplay-related changes.",
+    "Trundle spell 2 updated."
+  ],
+  "Varus": [
+    "Varus spell 2 tooltip changed across ranks."
+  ],
+  "Vex": [
+    "Vex spell 3 label changed across ranks."
+  ],
+  "Volibear": [
+    "Volibear spell 3 label changed across ranks."
+  ],
+  "Warwick": [
+    "Warwick spell 1 description changed across ranks."
+  ],
+  "Xerath": [
+    "Xerath spell 2 updated.",
+    "Xerath spell 3 updated."
+  ],
+  "Yone": [
+    "Yone passive description changed across ranks.",
+    "Yone spell 2 tooltip changed across ranks."
+  ],
+  "Yorick": [
+    "Yorick spell 2 spells changed across ranks.",
+    "Yorick passive spells changed across ranks.",
+    "Yorick spell 1 spells changed across ranks.",
+    "Yorick spell 3 spells changed across ranks.",
+    "Yorick armorperlevel 5.2 \u2192 4.5"
+  ],
+  "Yuumi": [
+    "Yuumi spell 3 tooltip changed across ranks."
+  ]
+}
