@@ -180,3 +180,4 @@ cython_debug/
 *.csv
 *.jsonl
 uv.lock
+./data/llama3b-qlora
