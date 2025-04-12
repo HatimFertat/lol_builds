@@ -3,12 +3,14 @@ name = "lol"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.11, <3.13"
 dependencies = [
     "deepdiff>=8.4.2",
     "ipykernel>=6.29.5",
     "pandas>=2.2.3",
     "python-dotenv>=1.1.0",
     "requests>=2.32.3",
+    "torch>=2.6.0",
     "tqdm>=4.67.1",
+    "unsloth>=2025.3.19",
 ]
