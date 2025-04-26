@@ -76,10 +76,6 @@ def init_db(db_path="data/matches.db"):
         first_blood_kill_2 BOOLEAN,
         first_blood_assist_1 BOOLEAN,
         first_blood_assist_2 BOOLEAN,
-        gold_per_minute_1 REAL,
-        gold_per_minute_2 REAL,
-        xp_diff_per_minute_1 REAL,
-        xp_diff_per_minute_2 REAL,
         ally_champions_1 TEXT,
         ally_champions_2 TEXT,
         enemy_champions_1 TEXT,
@@ -108,8 +104,7 @@ def insert_match_record(conn, record):
      total_damage_dealt_1, total_damage_dealt_2, damage_self_mitigated_1, damage_self_mitigated_2, turret_takedowns_1,
      turret_takedowns_2, dragon_takedowns_1, dragon_takedowns_2, baron_takedowns_1, baron_takedowns_2,
      longest_time_living_1, longest_time_living_2, champ_experience_1, champ_experience_2, time_played_1, time_played_2,
-     match_duration, first_blood_kill_1, first_blood_kill_2, first_blood_assist_1, first_blood_assist_2,
-     gold_per_minute_1, gold_per_minute_2, xp_diff_per_minute_1, xp_diff_per_minute_2, ally_champions_1,
+     match_duration, first_blood_kill_1, first_blood_kill_2, first_blood_assist_1, first_blood_assist_2,ally_champions_1,
      ally_champions_2, enemy_champions_1, enemy_champions_2, runes_1, runes_2, summoner_spells_1, summoner_spells_2)
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (
@@ -184,10 +179,6 @@ def insert_match_record(conn, record):
         int(record.get("first_blood_kill_2", 0)),
         int(record.get("first_blood_assist_1", 0)),
         int(record.get("first_blood_assist_2", 0)),
-        record.get("gold_per_minute_1"),
-        record.get("gold_per_minute_2"),
-        record.get("xp_diff_per_minute_1"),
-        record.get("xp_diff_per_minute_2"),
         str(record.get("ally_champions_1")),
         str(record.get("ally_champions_2")),
         str(record.get("enemy_champions_1")),
