@@ -1,7 +1,7 @@
 # config.py
 from dotenv import load_dotenv
 import os
-load_dotenv(dotenv_path='/Users/wota/Documents/projects/lol/.env')
+load_dotenv(dotenv_path='.env')
 
 API_KEY = os.getenv('RIOT_API_KEY')
 

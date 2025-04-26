@@ -55,7 +55,13 @@ def get_item_mapping(patch_version):
 
     item_mapping = {}
     for item_id, item_info in items.items():
-        item_mapping[item_id] = item_info.get("name", f"Item {item_id}")
+        tags = item_info.get("tags", [])
+        if item_info.get("maps").get("11") == True:
+            if "from" in item_info: #exclude base items
+                item_mapping[item_id] = item_info.get("name", f"Item {item_id}")
+            elif "Lane" in tags and not "Consumable" in tags and not "into" in item_info: #exclude consumables but keep starter items
+                item_mapping[item_id] = item_info.get("name", f"Item {item_id}")
+
     return item_mapping
 
 def get_runes_mapping(patch_version):
@@ -167,6 +173,8 @@ def save_diff(diff, filename, summarized_filename=None, important_summarized_fil
     if summarized_filename:
         summaries = {}
         item_mapping = get_item_mapping(CURRENT_PATCH)
+        if 'item' in filename: diff = {k: v for k, v in diff.items() if k in item_mapping}
+
         for name, change in diff.items():
             summarized = summarize_change(name, change, item_mapping=item_mapping, important_only=False)
             if summarized:

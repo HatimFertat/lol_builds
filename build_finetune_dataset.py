@@ -30,12 +30,12 @@ def format_completion(early_items, mid_items, late_items):
 def main():
     input_csv = "data/llm_ready_dataset.csv"
     output_jsonl = "data/build_finetune_dataset.jsonl"
-    Path("output").mkdir(parents=True, exist_ok=True)
+    # Path("output").mkdir(parents=True, exist_ok=True)
 
     # Load patch summaries
-    with open("output/champion_patch_important_summary.json", "r") as f:
+    with open("patch_diffs/champion_patch_important_summary.json", "r") as f:
         champion_patch_summary = json.load(f)
-    with open("output/item_patch_important_summary.json", "r") as f:
+    with open("patch_diffs/item_patch_important_summary.json", "r") as f:
         item_patch_summary = json.load(f)
 
     # Prepare champion patch notes lookup

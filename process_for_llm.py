@@ -38,8 +38,8 @@ def flatten_items_by_phase(item_list, item_mapping):
 
     phases = {"early": [], "mid": [], "late": []}
 
-    # IDs for consumable potions and wards to exclude
-    excluded_items = {2003, 2031, 2033, 2055, 2056, 3364, 3340, 2010}
+    # IDs for consumable potions and wards to exclude and elixirs
+    excluded_items = {2003, 2031, 2033, 2055, 2056, 3364, 3340, 2010, 2138, 2139, 2140, 2150, 2151, 2152}
 
     inventory_stack = []
 
@@ -59,13 +59,12 @@ def flatten_items_by_phase(item_list, item_mapping):
         if item_id in excluded_items:
             continue
 
-        item_info = item_mapping.get(item_id)
-        item_name = item_info['name'] if item_info else f"UnknownItem{item_id}"
-
-        description = f"{action_type} {item_name}"
-
-        if phase in phases:
-            phases[phase].append(description)
+        item_name = item_mapping.get(item_id)
+        if item_name:
+            description = f"{action_type} {item_name}"
+            
+            if phase in phases:
+                phases[phase].append(description)
 
     early = " -> ".join(phases["early"])
     mid = " -> ".join(phases["mid"])

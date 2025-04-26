@@ -1,47 +1,14 @@
 {
-  "223094": [
-    "Rapid Firecannon item description updated with functional change."
-  ],
-  "223095": [
-    "Stormrazor item description updated with functional change."
-  ],
-  "226617": [
-    "Moonstone Renewer item description updated with functional change."
-  ],
   "3179": [
     "Umbral Glaive item description updated with functional change.",
-    "Umbral Glaive FlatPhysicalDamageMod 50 \u2192 55"
+    "Umbral Glaive FlatPhysicalDamageMod increased from 50 to 55."
   ],
   "326657": [
     "Rod of Ages item description updated with functional change."
   ],
-  "3398": [
-    "New entity added: Small Party Favor."
-  ],
-  "3399": [
-    "New entity added: Party Favor."
-  ],
-  "3430": [
-    "Rite Of Ruin item description updated with functional change."
-  ],
   "3803": [
     "Catalyst of Aeons item description updated with functional change.",
-    "Catalyst of Aeons FlatMPPoolMod 300 \u2192 375"
-  ],
-  "4011": [
-    "Sword of Blossoming Dawn item description updated with functional change."
-  ],
-  "4016": [
-    "Wordless Promise item description updated with functional change."
-  ],
-  "443090": [
-    "Reaper's Toll had 1 gameplay-related changes."
-  ],
-  "447108": [
-    "Runecarver item description updated with functional change."
-  ],
-  "447118": [
-    "Pyromancer's Cloak item description updated with functional change."
+    "Catalyst of Aeons FlatMPPoolMod increased from 300 to 375."
   ],
   "6657": [
     "Rod of Ages item description updated with functional change."

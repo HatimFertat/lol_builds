@@ -7,7 +7,7 @@
   ],
   "Darius": [
     "Darius spell 2 updated.",
-    "Darius armor 39 \u2192 37"
+    "Darius armor decreased from 39 to 37."
   ],
   "DrMundo": [
     "DrMundo spell 3 label changed across ranks."
@@ -16,8 +16,8 @@
     "Graves passive description changed across ranks."
   ],
   "Gwen": [
-    "Gwen hp 650 \u2192 620",
-    "Gwen armor 39 \u2192 36"
+    "Gwen hp decreased from 650 to 620.",
+    "Gwen armor decreased from 39 to 36."
   ],
   "Leblanc": [
     "Leblanc gameplay data updated.",
@@ -37,10 +37,10 @@
     "Naafiri 3 type changed.",
     "Naafiri 1 type changed.",
     "Naafiri spell 1 cooldownBurn changed across ranks.",
-    "Naafiri hp 635 \u2192 610",
-    "Naafiri armor 30 \u2192 28",
-    "Naafiri hpregenperlevel 0.9 \u2192 0.7",
-    "Naafiri attackdamage 57 \u2192 55"
+    "Naafiri hp decreased from 635 to 610.",
+    "Naafiri armor decreased from 30 to 28.",
+    "Naafiri hpregenperlevel decreased from 0.9 to 0.7.",
+    "Naafiri attackdamage decreased from 57 to 55."
   ],
   "Nasus": [
     "Nasus spell 3 label changed across ranks."
@@ -81,11 +81,11 @@
     "Yone spell 2 tooltip changed across ranks."
   ],
   "Yorick": [
-    "Yorick spell 2 spells changed across ranks.",
-    "Yorick passive spells changed across ranks.",
     "Yorick spell 1 spells changed across ranks.",
     "Yorick spell 3 spells changed across ranks.",
-    "Yorick armorperlevel 5.2 \u2192 4.5"
+    "Yorick spell 2 spells changed across ranks.",
+    "Yorick passive spells changed across ranks.",
+    "Yorick armorperlevel decreased from 5.2 to 4.5."
   ],
   "Yuumi": [
     "Yuumi spell 3 tooltip changed across ranks."
