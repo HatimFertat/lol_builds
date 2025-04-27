@@ -4,7 +4,6 @@ import argparse
 import logging
 from config import CURRENT_PATCH_START, REGIONS
 from pipeline import process_region, RateLimiter
-from db import init_db
 import threading
 from tqdm import tqdm
 import os

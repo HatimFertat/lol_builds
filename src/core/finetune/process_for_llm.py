@@ -28,7 +28,7 @@ def load_data():
     conn.close()
     return df
 
-def flatten_items_by_phase(item_list, item_mapping):
+def flatten_items_by_phase(item_list, item_mapping, recipe_mapping):
     """Convert a list of item events into three strings: early, mid, late, handling buys and sells properly."""
     if isinstance(item_list, str):
         item_list = ast.literal_eval(item_list)
@@ -38,39 +38,125 @@ def flatten_items_by_phase(item_list, item_mapping):
 
     phases = {"early": [], "mid": [], "late": []}
 
+    # Helper to record an action plus an inventory snapshot for the given phase
+    def _log_action(phase_key: str, description: str):
+        if phase_key not in phases:
+            return
+        phases[phase_key].append(description)
+        inv_names = [
+            item_mapping.get(iid)
+            for iid in current_inventory
+            if iid not in excluded_items and item_mapping.get(iid)
+        ]
+        count = len(inv_names)
+        phases[phase_key].append(
+            f"Inventory ({count}): " + ", ".join(inv_names) if inv_names else "Inventory (0): (empty)"
+        )
+        phases[phase_key].append("")
+
     # IDs for consumable potions and wards to exclude and elixirs
     excluded_items = {2003, 2031, 2033, 2055, 2056, 3364, 3340, 2010, 2138, 2139, 2140, 2150, 2151, 2152}
 
     inventory_stack = []
+    current_inventory = []
+    recently_destroyed = []
 
     for event in item_list:
         item_id = event.get('itemId')
         action_raw = event.get('action', '')
         phase = event.get('phase', '')
+        timestamp = event.get('timestamp', 0)
+
+        #print(f"Processing event: {action_raw} {item_id} at {timestamp}")
 
         if action_raw == "ITEM_PURCHASED":
-            inventory_stack.append(("Buy", item_id, phase))
+            recipe_components = recipe_mapping.get(item_id, [])
+            recipe_components = [comp for comp in recipe_components]
+
+            # Combine current inventory with items destroyed very recently (acts as a short‑lived buffer for fusions).
+            inventory_and_recent = current_inventory + [
+                comp_id for comp_id, comp_time in recently_destroyed
+                if timestamp - comp_time <= 1000
+            ]
+
+            # A build is possible when the item has recipe components and at least one of them is available
+            # either in the current inventory OR in the short‑lived destroyed buffer.
+            has_any_component = any(comp in inventory_and_recent for comp in recipe_components)
+            can_build = bool(recipe_components) and has_any_component
+
+            #print(f"Recipe components for {item_id}: {recipe_components}")
+            #print(f"Can build {item_id}? {can_build}")
+            if recipe_components and can_build:
+                # Treat as Build
+                # Remove only the components that actually existed in inventory or were recently destroyed.
+                for comp_id in recipe_components:
+                    if comp_id in current_inventory:
+                        current_inventory.remove(comp_id)
+                    # Also clean from recently_destroyed if present
+                    recently_destroyed = [(id_, t) for id_, t in recently_destroyed if id_ != comp_id]
+                inventory_stack.append(("Build", item_id, phase, recipe_components))
+                current_inventory.append(item_id)
+                #print(f"Action taken: Build {item_id}")
+                #print(f"Current inventory after action: {current_inventory}")
+                # Log the build event chronologically
+                item_name = item_mapping.get(item_id, f"Unknown{item_id}")
+                component_names = [
+                    item_mapping.get(comp_id, f"Unknown{comp_id}")
+                    for comp_id in recipe_components
+                    if comp_id not in excluded_items and comp_id != 2022
+                ]
+                build_desc = (
+                    f"Build {item_name} (fusing {' + '.join(component_names)})"
+                    if component_names
+                    else f"Build {item_name}"
+                )
+                if item_id not in excluded_items:
+                    _log_action(phase, build_desc)
+            else:
+                inventory_stack.append(("Buy", item_id, phase))
+                current_inventory.append(item_id)
+                #print(f"Action taken: Buy {item_id}")
+                #print(f"Current inventory after action: {current_inventory}")
+                # Log the buy event
+                item_name = item_mapping.get(item_id, f"Unknown{item_id}")
+                if item_id not in excluded_items:
+                    _log_action(phase, f"Buy {item_name}")
         elif action_raw == "ITEM_SOLD":
             inventory_stack.append(("Sell", item_id, phase))
-        elif action_raw == "ITEM_UNDO" and inventory_stack:
-            inventory_stack.pop()
+            if item_id in current_inventory:
+                current_inventory.remove(item_id)
+            #print(f"Item sold: {item_id}, Current inventory: {current_inventory}")
+            item_name = item_mapping.get(item_id, f"Unknown{item_id}")
+            if item_id not in excluded_items:
+                _log_action(phase, f"Sell {item_name}")
+        elif action_raw == "ITEM_DESTROYED":
+            recently_destroyed.append((item_id, timestamp))
+            if item_id in current_inventory:
+                current_inventory.remove(item_id)
+            #print(f"Item destroyed: {item_id}, Current inventory: {current_inventory}")
+        elif action_raw == "ITEM_UNDO":
+            if inventory_stack:
+                last_action = inventory_stack.pop()
+                if last_action[0] == "Buy":
+                    last_item_id = last_action[1]
+                    if last_item_id in current_inventory:
+                        current_inventory.remove(last_item_id)
+                elif last_action[0] == "Sell":
+                    last_item_id = last_action[1]
+                    current_inventory.append(last_item_id)
+                elif last_action[0] == "Build":
+                    last_item_id = last_action[1]
+                    if last_item_id in current_inventory:
+                        current_inventory.remove(last_item_id)
+            #print(f"Undo action, New inventory: {current_inventory}")
 
-    for action_type, item_id, phase in inventory_stack:
-        if item_id in excluded_items:
-            continue
+    early = "\n".join(phases["early"])
+    mid = "\n".join(phases["mid"])
+    late = "\n".join(phases["late"])
 
-        item_name = item_mapping.get(item_id)
-        if item_name:
-            description = f"{action_type} {item_name}"
-            
-            if phase in phases:
-                phases[phase].append(description)
+    final_inventory_list = [item_mapping.get(item_id) for item_id in current_inventory if item_id not in excluded_items and item_mapping.get(item_id)]
 
-    early = " -> ".join(phases["early"])
-    mid = " -> ".join(phases["mid"])
-    late = " -> ".join(phases["late"])
-
-    return early, mid, late
+    return early, mid, late, final_inventory_list
 
 def load_champion_tags():
     """Load champion roles from file."""
@@ -167,11 +253,22 @@ def main():
         item_mapping = json.load(f)
     item_mapping = {int(k): v for k, v in item_mapping.items()}
 
-    early_mid_late_1 = df["items_1"].apply(lambda x: flatten_items_by_phase(x, item_mapping))
-    early_mid_late_2 = df["items_2"].apply(lambda x: flatten_items_by_phase(x, item_mapping))
+    print("Loading item recipe mapping from file...")
+    with open("patch_diffs/item_new_15.7.1.json", "r") as f:
+        full_item_data = json.load(f)
+        full_item_data = full_item_data.get("data", {})
 
-    df["items_1_early"], df["items_1_mid"], df["items_1_late"] = zip(*early_mid_late_1)
-    df["items_2_early"], df["items_2_mid"], df["items_2_late"] = zip(*early_mid_late_2)
+    # Build a clean recipe_mapping: {item_id: [component_id, ...]}
+    recipe_mapping = {}
+    for item_id, item_data in full_item_data.items():
+        if "from" in item_data:
+            recipe_mapping[int(item_id)] = [int(comp_id) for comp_id in item_data["from"]]
+
+    early_mid_late_1 = df["items_1"].apply(lambda x: flatten_items_by_phase(x, item_mapping, recipe_mapping))
+    early_mid_late_2 = df["items_2"].apply(lambda x: flatten_items_by_phase(x, item_mapping, recipe_mapping))
+
+    df["items_1_early"], df["items_1_mid"], df["items_1_late"], df["items_1_inventory"] = zip(*early_mid_late_1)
+    df["items_2_early"], df["items_2_mid"], df["items_2_late"], df["items_2_inventory"] = zip(*early_mid_late_2)
 
     # Select only useful columns for LLM fine-tuning
     columns_to_flip = [
