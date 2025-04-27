@@ -173,6 +173,8 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+/unsloth_compiled_cache
+/data/unsloth_compiled_cache
 /data
 /logs
 .DS_Store

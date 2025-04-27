@@ -220,7 +220,7 @@ def parse_item_events(timeline, participant_id):
         events = frame.get("events", [])
         for event in events:
             event_type = event.get("type")
-            if event_type in ["ITEM_PURCHASED", "ITEM_SOLD", "ITEM_UNDO"] and event.get("participantId") == participant_id:
+            if event_type in ["ITEM_PURCHASED", "ITEM_SOLD", "ITEM_UNDO", "ITEM_DESTROYED"] and event.get("participantId") == participant_id:
                 timestamp = event.get("timestamp")
                 if timestamp < EARLY_PHASE_THRESHOLD:
                     phase = "early"
