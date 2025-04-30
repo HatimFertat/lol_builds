@@ -2,6 +2,9 @@ import sqlite3
 import pandas as pd
 import json
 import ast
+import csv
+from src.core.pipeline.config import CURRENT_PATCH
+#CLI: export PYTHONPATH=/home/hatim/data/sourcegit/lol_builds
 
 DATABASE_PATH = "data/matches.db"
 OUTPUT_PATH = "data/llm_ready_dataset.csv"
@@ -103,7 +106,7 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping):
                 component_names = [
                     item_mapping.get(comp_id, f"Unknown{comp_id}")
                     for comp_id in recipe_components
-                    if comp_id not in excluded_items and comp_id != 2022
+                    if comp_id not in excluded_items
                 ]
                 build_desc = (
                     f"Build {item_name} (fusing {' + '.join(component_names)})"
@@ -154,8 +157,10 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping):
     mid = "\n".join(phases["mid"])
     late = "\n".join(phases["late"])
 
-    final_inventory_list = [item_mapping.get(item_id) for item_id in current_inventory if item_id not in excluded_items and item_mapping.get(item_id)]
-
+    # final_inventory_list = ", ".join(item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory)
+    end_inventory_list = [item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory if iid not in excluded_items]
+    final_inventory_list = ", ".join(end_inventory_list) if end_inventory_list else "No items."
+        
     return early, mid, late, final_inventory_list
 
 def load_champion_tags():
@@ -254,7 +259,7 @@ def main():
     item_mapping = {int(k): v for k, v in item_mapping.items()}
 
     print("Loading item recipe mapping from file...")
-    with open("patch_diffs/item_new_15.7.1.json", "r") as f:
+    with open(f"patch_diffs/item_new_{CURRENT_PATCH}.json", "r") as f:
         full_item_data = json.load(f)
         full_item_data = full_item_data.get("data", {})
 
@@ -267,16 +272,16 @@ def main():
     early_mid_late_1 = df["items_1"].apply(lambda x: flatten_items_by_phase(x, item_mapping, recipe_mapping))
     early_mid_late_2 = df["items_2"].apply(lambda x: flatten_items_by_phase(x, item_mapping, recipe_mapping))
 
-    df["items_1_early"], df["items_1_mid"], df["items_1_late"], df["items_1_inventory"] = zip(*early_mid_late_1)
-    df["items_2_early"], df["items_2_mid"], df["items_2_late"], df["items_2_inventory"] = zip(*early_mid_late_2)
+    df["items_1_early"], df["items_1_mid"], df["items_1_late"], df["items_1_end"] = zip(*early_mid_late_1)
+    df["items_2_early"], df["items_2_mid"], df["items_2_late"], df["items_2_end"] = zip(*early_mid_late_2)
 
     # Select only useful columns for LLM fine-tuning
     columns_to_flip = [
     "champion_1", "champion_2", "lane",
     "ally_champions_1", "enemy_champions_1",
     "ally_champions_2", "enemy_champions_2",
-    "items_1_early", "items_1_mid", "items_1_late",
-    "items_2_early", "items_2_mid", "items_2_late",
+    "items_1_early", "items_1_mid", "items_1_late", "items_1_end",
+    "items_2_early", "items_2_mid", "items_2_late", "items_2_end",
     "keystone_1", "keystone_2",
     "runes_1", "runes_2",
     "summoner_spells_1", "summoner_spells_2"
@@ -295,9 +300,11 @@ def main():
         "items_1_early": "items_2_early",
         "items_1_mid": "items_2_mid",
         "items_1_late": "items_2_late",
+        "items_1_end": "items_2_end",
         "items_2_early": "items_1_early",
         "items_2_mid": "items_1_mid",
         "items_2_late": "items_1_late",
+        "items_2_end": "items_1_end",
         "keystone_1": "keystone_2",
         "keystone_2": "keystone_1",
         "runes_1": "runes_2",
@@ -310,7 +317,7 @@ def main():
     "champion_1", "champion_2", "lane",
     "ally_champions_1", "enemy_champions_1",
     "ally_champions_2", "enemy_champions_2",
-    "items_1_early", "items_1_mid", "items_1_late",
+    "items_1_early", "items_1_mid", "items_1_late", "items_1_end",
     "keystone_1", "keystone_2",
     "runes_1", "runes_2",
     "summoner_spells_1", "summoner_spells_2"
@@ -319,7 +326,7 @@ def main():
     llm_df = pd.concat([llm_df, flipped_df], ignore_index=True)[columns_to_keep]
 
     print("Saving processed dataset...")
-    llm_df.to_csv(OUTPUT_PATH, index=False, sep=";")
+    llm_df.to_csv(OUTPUT_PATH, index=False, sep=";", quoting=csv.QUOTE_ALL)
     print(f"LLM-ready dataset saved to {OUTPUT_PATH}")
 
 if __name__ == "__main__":

@@ -18,8 +18,9 @@ MODEL_NAME = "unsloth/Llama-3.2-3B-bnb-4bit"
 TRAIN_FILE = "data/train.jsonl"
 VAL_FILE = "data/val.jsonl"
 OUTPUT_DIR = "data/llama3b-qlora"
+REPO_ID = "HatimF/LoL_Build-Llama3B"
 
-BATCH_SIZE = 48
+BATCH_SIZE = 16
 GRADIENT_ACCUMULATION_STEPS = 1
 EPOCHS = 1
 MAX_STEPS = 10000
@@ -95,6 +96,34 @@ print(f"99.9th Percentile Length: {np.percentile(lengths, 99.9)}")
 print("=====================================\n")
 
 
+import evaluate
+
+bleu = evaluate.load("bleu")
+rouge = evaluate.load("rouge")
+
+def compute_metrics(eval_pred):
+    logits, labels = eval_pred
+    predictions = logits.argmax(dim=-1)
+
+    # Decode
+    decoded_preds = tokenizer.batch_decode(predictions, skip_special_tokens=True)
+    decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
+
+    # Exact Match
+    exact_matches = [pred.strip() == label.strip() for pred, label in zip(decoded_preds, decoded_labels)]
+    em_score = sum(exact_matches) / len(exact_matches)
+
+    # BLEU and ROUGE
+    bleu_result = bleu.compute(predictions=decoded_preds, references=[[l] for l in decoded_labels])
+    rouge_result = rouge.compute(predictions=decoded_preds, references=decoded_labels)
+
+    return {
+        "exact_match": em_score,
+        "bleu": bleu_result["bleu"],
+        "rougeL": rouge_result["rougeL"],
+    }
+
+
 # ====================
 # DATA COLLATOR
 # ====================
@@ -123,7 +152,9 @@ training_args = TrainingArguments(
     logging_steps=5,
     optim="adamw_8bit",
     report_to="none",
-    seed=SEED
+    seed=SEED,
+    hub_token=HF_TOKEN,
+    hub_model_id=REPO_ID
 )
 
 trainer = SFTTrainer(
@@ -133,6 +164,7 @@ trainer = SFTTrainer(
     train_dataset=train_dataset,
     eval_dataset=val_dataset,
     data_collator=collator,
+    compute_metrics=compute_metrics,
 )
 
 trainer.train()
@@ -140,3 +172,6 @@ trainer.train()
 # Save final model
 trainer.save_model(OUTPUT_DIR)
 print("\n✅ Fine-tuning complete! Model saved to:", OUTPUT_DIR)
+
+trainer.evaluate()
+trainer.push_to_hub()

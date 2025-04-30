@@ -39,21 +39,21 @@
         "new_value": 26,
         "old_value": 24
       },
+      "root['spells'][2]['cooldown'][2]": {
+        "new_value": 21,
+        "old_value": 19
+      },
       "root['spells'][2]['cooldown'][1]": {
         "new_value": 23.5,
         "old_value": 21.5
-      },
-      "root['spells'][2]['cooldown'][3]": {
-        "new_value": 18.5,
-        "old_value": 16.5
       },
       "root['spells'][2]['cooldown'][4]": {
         "new_value": 16,
         "old_value": 14
       },
-      "root['spells'][2]['cooldown'][2]": {
-        "new_value": 21,
-        "old_value": 19
+      "root['spells'][2]['cooldown'][3]": {
+        "new_value": 18.5,
+        "old_value": 16.5
       }
     }
   },
@@ -325,17 +325,17 @@
         "new_value": 50,
         "old_value": 30
       },
-      "root['spells'][2]['cooldown'][0]": {
-        "new_value": 21,
-        "old_value": 24
+      "root['spells'][2]['effectBurn'][2]": {
+        "new_value": "34/38/42/46/50",
+        "old_value": "30/34/38/42/46"
       },
       "root['spells'][2]['cooldown'][1]": {
         "new_value": 19.5,
         "old_value": 22
       },
-      "root['spells'][2]['effectBurn'][2]": {
-        "new_value": "34/38/42/46/50",
-        "old_value": "30/34/38/42/46"
+      "root['spells'][2]['cooldown'][0]": {
+        "new_value": 21,
+        "old_value": 24
       },
       "root['spells'][2]['cooldown'][4]": {
         "new_value": 15,
@@ -393,22 +393,6 @@
   },
   "Xerath": {
     "values_changed": {
-      "root['spells'][2]['effectBurn'][1]": {
-        "new_value": "70/100/130/160/190",
-        "old_value": "80/110/140/170/200"
-      },
-      "root['spells'][3]['effect'][3]": {
-        "new_value": [
-          170,
-          220,
-          270
-        ],
-        "old_value": [
-          180,
-          230,
-          280
-        ]
-      },
       "root['spells'][2]['effect'][1]": {
         "new_value": [
           70,
@@ -423,6 +407,22 @@
           140,
           170,
           200
+        ]
+      },
+      "root['spells'][2]['effectBurn'][1]": {
+        "new_value": "70/100/130/160/190",
+        "old_value": "80/110/140/170/200"
+      },
+      "root['spells'][3]['effect'][3]": {
+        "new_value": [
+          170,
+          220,
+          270
+        ],
+        "old_value": [
+          180,
+          230,
+          280
         ]
       },
       "root['spells'][3]['effectBurn'][3]": {
@@ -448,530 +448,6 @@
       "root['stats']['armorperlevel']": {
         "new_value": 4.5,
         "old_value": 5.2
-      },
-      "root['spells'][1]": {
-        "new_value": {
-          "id": "YorickW",
-          "name": "Dark Procession",
-          "description": "Yorick summons a destructible wall at target location that will block enemy movement.",
-          "tooltip": "Yorick summons a wall of spirits blocking enemies' path, but not allies'. The wall has <healing>{{ wallhealthtooltip }} Health</healing> and disappears after {{ circleduration }} seconds.{{ spellmodifierdescriptionappend }}",
-          "leveltip": {
-            "label": [
-              "Cooldown",
-              "Health"
-            ],
-            "effect": [
-              "{{ cooldown }} -> {{ cooldownNL }}",
-              "{{ wallhealthtooltip }} -> {{ wallhealthtooltipNL }}"
-            ]
-          },
-          "maxrank": 5,
-          "cooldown": [
-            20,
-            18,
-            16,
-            14,
-            12
-          ],
-          "cooldownBurn": "20/18/16/14/12",
-          "cost": [
-            70,
-            70,
-            70,
-            70,
-            70
-          ],
-          "costBurn": "70",
-          "datavalues": {},
-          "effect": [
-            null,
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
-          ],
-          "effectBurn": [
-            null,
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0"
-          ],
-          "vars": [],
-          "costType": " {{ abilityresourcename }}",
-          "maxammo": "-1",
-          "range": [
-            600,
-            600,
-            600,
-            600,
-            600
-          ],
-          "rangeBurn": "600",
-          "image": {
-            "full": "YorickW.png",
-            "sprite": "spell16.png",
-            "group": "spell",
-            "x": 144,
-            "y": 96,
-            "w": 48,
-            "h": 48
-          },
-          "resource": "{{ cost }} {{ abilityresourcename }}"
-        },
-        "old_value": {
-          "id": "YorickW",
-          "name": "Dark Procession",
-          "description": "Yorick summons a destructible wall at target location that will block enemy movement.",
-          "tooltip": "Yorick summons a wall of spirits blocking enemies' path, but not allies'. The wall can be Attacked, and disappears after {{ e5 }} hits.{{ spellmodifierdescriptionappend }}",
-          "leveltip": {
-            "label": [
-              "Cooldown",
-              "Health"
-            ],
-            "effect": [
-              "{{ cooldown }} -> {{ cooldownNL }}",
-              "{{ e5 }} -> {{ e5NL }}"
-            ]
-          },
-          "maxrank": 5,
-          "cooldown": [
-            20,
-            18,
-            16,
-            14,
-            12
-          ],
-          "cooldownBurn": "20/18/16/14/12",
-          "cost": [
-            70,
-            70,
-            70,
-            70,
-            70
-          ],
-          "costBurn": "70",
-          "datavalues": {},
-          "effect": [
-            null,
-            [
-              4,
-              4,
-              4,
-              4,
-              4
-            ],
-            [
-              18,
-              18,
-              18,
-              18,
-              18
-            ],
-            [
-              0.75,
-              0.75,
-              0.75,
-              0.75,
-              0.75
-            ],
-            [
-              0,
-              0,
-              1,
-              1,
-              2
-            ],
-            [
-              2,
-              2,
-              3,
-              3,
-              4
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0,
-              0,
-              0
-            ]
-          ],
-          "effectBurn": [
-            null,
-            "4",
-            "18",
-            "0.75",
-            "0/0/1/1/2",
-            "2/2/3/3/4",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0"
-          ],
-          "vars": [],
-          "costType": " {{ abilityresourcename }}",
-          "maxammo": "-1",
-          "range": [
-            600,
-            600,
-            600,
-            600,
-            600
-          ],
-          "rangeBurn": "600",
-          "image": {
-            "full": "YorickW.png",
-            "sprite": "spell16.png",
-            "group": "spell",
-            "x": 144,
-            "y": 96,
-            "w": 48,
-            "h": 48
-          },
-          "resource": "{{ cost }} {{ abilityresourcename }}"
-        }
-      },
-      "root['spells'][3]": {
-        "new_value": {
-          "id": "YorickR",
-          "name": "Eulogy of the Isles",
-          "description": "Yorick summons the Maiden of the Mist that causes Yorick's attacks against the Maiden's target to deal bonus damage. The Maiden will also automatically raise Walkers from dead enemies.",
-          "tooltip": "Yorick summons the <keywordMajor>Maiden of the Mist</keywordMajor> with <healing>{{ yorickbigghoulhealth }} Health</healing> and <magicDamage>{{ yorickbigghouldamage }} Magic Attack Damage</magicDamage> plus {{ rghoulnumbers }} <keywordMajor>Mist Walkers</keywordMajor>. The <keywordMajor>Maiden</keywordMajor> automatically raises <keywordMajor>Mist Walkers</keywordMajor> from nearby enemy deaths.<br /><br />When Yorick damages the <keywordMajor>Maiden's</keywordMajor> target, he deals <magicDamage>{{ rmarkdamagepercent }}% max Health magic damage</magicDamage>.<br /><br />After 10 seconds, Yorick can <recast>Recast</recast> this Ability to free the <keywordMajor>Maiden</keywordMajor>, sending her down the nearest lane.{{ spellmodifierdescriptionappend }}",
-          "leveltip": {
-            "label": [
-              "Attack Damage",
-              "Mark Damage",
-              "Mist Walkers",
-              "Cooldown"
-            ],
-            "effect": [
-              "{{ rbigghoulbonusad }} -> {{ rbigghoulbonusadNL }}",
-              "{{ rmarkdamagepercent }}% -> {{ rmarkdamagepercentNL }}%",
-              "{{ rghoulnumbers }} -> {{ rghoulnumbersNL }}",
-              "{{ cooldown }} -> {{ cooldownNL }}"
-            ]
-          },
-          "maxrank": 3,
-          "cooldown": [
-            160,
-            130,
-            100
-          ],
-          "cooldownBurn": "160/130/100",
-          "cost": [
-            100,
-            100,
-            100
-          ],
-          "costBurn": "100",
-          "datavalues": {},
-          "effect": [
-            null,
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ]
-          ],
-          "effectBurn": [
-            null,
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0"
-          ],
-          "vars": [],
-          "costType": " {{ abilityresourcename }}",
-          "maxammo": "-1",
-          "range": [
-            600,
-            600,
-            600
-          ],
-          "rangeBurn": "600",
-          "image": {
-            "full": "YorickR.png",
-            "sprite": "spell16.png",
-            "group": "spell",
-            "x": 240,
-            "y": 96,
-            "w": 48,
-            "h": 48
-          },
-          "resource": "{{ cost }} {{ abilityresourcename }}"
-        },
-        "old_value": {
-          "id": "YorickR",
-          "name": "Eulogy of the Isles",
-          "description": "Yorick summons the Maiden of the Mist that causes Yorick's attacks against the Maiden's target to deal bonus damage. The Maiden will also automatically raise Walkers from dead enemies.",
-          "tooltip": "Yorick summons the <keywordMajor>Maiden of the Mist</keywordMajor> and {{ rghoulnumbers }} <keywordMajor>Mist Walkers</keywordMajor>. The <keywordMajor>Maiden</keywordMajor> automatically raises <keywordMajor>Mist Walkers</keywordMajor> from nearby enemy deaths.<br /><br />When Yorick damages the <keywordMajor>Maiden's</keywordMajor> target, he deals <magicDamage>{{ rmarkdamagepercent }}% max Health magic damage</magicDamage>.<br /><br />After 10 seconds, Yorick can <recast>Recast</recast> this Ability to free the <keywordMajor>Maiden</keywordMajor>, sending her down the nearest lane.{{ spellmodifierdescriptionappend }}",
-          "leveltip": {
-            "label": [
-              "Mist Walkers",
-              "Mark Damage",
-              "Bonus Attack Damage",
-              "Cooldown"
-            ],
-            "effect": [
-              "{{ rghoulnumbers }} -> {{ rghoulnumbersNL }}",
-              "{{ rmarkdamagepercent }}% -> {{ rmarkdamagepercentNL }}%",
-              "{{ rbigghoulbonusad }} -> {{ rbigghoulbonusadNL }}",
-              "{{ cooldown }} -> {{ cooldownNL }}"
-            ]
-          },
-          "maxrank": 3,
-          "cooldown": [
-            160,
-            130,
-            100
-          ],
-          "cooldownBurn": "160/130/100",
-          "cost": [
-            100,
-            100,
-            100
-          ],
-          "costBurn": "100",
-          "datavalues": {},
-          "effect": [
-            null,
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ],
-            [
-              0,
-              0,
-              0
-            ]
-          ],
-          "effectBurn": [
-            null,
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0",
-            "0"
-          ],
-          "vars": [],
-          "costType": " {{ abilityresourcename }}",
-          "maxammo": "-1",
-          "range": [
-            600,
-            600,
-            600
-          ],
-          "rangeBurn": "600",
-          "image": {
-            "full": "YorickR.png",
-            "sprite": "spell16.png",
-            "group": "spell",
-            "x": 240,
-            "y": 96,
-            "w": 48,
-            "h": 48
-          },
-          "resource": "{{ cost }} {{ abilityresourcename }}"
-        }
       },
       "root['spells'][2]": {
         "new_value": {
@@ -1546,6 +1022,530 @@
             "sprite": "spell16.png",
             "group": "spell",
             "x": 96,
+            "y": 96,
+            "w": 48,
+            "h": 48
+          },
+          "resource": "{{ cost }} {{ abilityresourcename }}"
+        }
+      },
+      "root['spells'][1]": {
+        "new_value": {
+          "id": "YorickW",
+          "name": "Dark Procession",
+          "description": "Yorick summons a destructible wall at target location that will block enemy movement.",
+          "tooltip": "Yorick summons a wall of spirits blocking enemies' path, but not allies'. The wall has <healing>{{ wallhealthtooltip }} Health</healing> and disappears after {{ circleduration }} seconds.{{ spellmodifierdescriptionappend }}",
+          "leveltip": {
+            "label": [
+              "Cooldown",
+              "Health"
+            ],
+            "effect": [
+              "{{ cooldown }} -> {{ cooldownNL }}",
+              "{{ wallhealthtooltip }} -> {{ wallhealthtooltipNL }}"
+            ]
+          },
+          "maxrank": 5,
+          "cooldown": [
+            20,
+            18,
+            16,
+            14,
+            12
+          ],
+          "cooldownBurn": "20/18/16/14/12",
+          "cost": [
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "costBurn": "70",
+          "datavalues": {},
+          "effect": [
+            null,
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "effectBurn": [
+            null,
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "vars": [],
+          "costType": " {{ abilityresourcename }}",
+          "maxammo": "-1",
+          "range": [
+            600,
+            600,
+            600,
+            600,
+            600
+          ],
+          "rangeBurn": "600",
+          "image": {
+            "full": "YorickW.png",
+            "sprite": "spell16.png",
+            "group": "spell",
+            "x": 144,
+            "y": 96,
+            "w": 48,
+            "h": 48
+          },
+          "resource": "{{ cost }} {{ abilityresourcename }}"
+        },
+        "old_value": {
+          "id": "YorickW",
+          "name": "Dark Procession",
+          "description": "Yorick summons a destructible wall at target location that will block enemy movement.",
+          "tooltip": "Yorick summons a wall of spirits blocking enemies' path, but not allies'. The wall can be Attacked, and disappears after {{ e5 }} hits.{{ spellmodifierdescriptionappend }}",
+          "leveltip": {
+            "label": [
+              "Cooldown",
+              "Health"
+            ],
+            "effect": [
+              "{{ cooldown }} -> {{ cooldownNL }}",
+              "{{ e5 }} -> {{ e5NL }}"
+            ]
+          },
+          "maxrank": 5,
+          "cooldown": [
+            20,
+            18,
+            16,
+            14,
+            12
+          ],
+          "cooldownBurn": "20/18/16/14/12",
+          "cost": [
+            70,
+            70,
+            70,
+            70,
+            70
+          ],
+          "costBurn": "70",
+          "datavalues": {},
+          "effect": [
+            null,
+            [
+              4,
+              4,
+              4,
+              4,
+              4
+            ],
+            [
+              18,
+              18,
+              18,
+              18,
+              18
+            ],
+            [
+              0.75,
+              0.75,
+              0.75,
+              0.75,
+              0.75
+            ],
+            [
+              0,
+              0,
+              1,
+              1,
+              2
+            ],
+            [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ],
+          "effectBurn": [
+            null,
+            "4",
+            "18",
+            "0.75",
+            "0/0/1/1/2",
+            "2/2/3/3/4",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "vars": [],
+          "costType": " {{ abilityresourcename }}",
+          "maxammo": "-1",
+          "range": [
+            600,
+            600,
+            600,
+            600,
+            600
+          ],
+          "rangeBurn": "600",
+          "image": {
+            "full": "YorickW.png",
+            "sprite": "spell16.png",
+            "group": "spell",
+            "x": 144,
+            "y": 96,
+            "w": 48,
+            "h": 48
+          },
+          "resource": "{{ cost }} {{ abilityresourcename }}"
+        }
+      },
+      "root['spells'][3]": {
+        "new_value": {
+          "id": "YorickR",
+          "name": "Eulogy of the Isles",
+          "description": "Yorick summons the Maiden of the Mist that causes Yorick's attacks against the Maiden's target to deal bonus damage. The Maiden will also automatically raise Walkers from dead enemies.",
+          "tooltip": "Yorick summons the <keywordMajor>Maiden of the Mist</keywordMajor> with <healing>{{ yorickbigghoulhealth }} Health</healing> and <magicDamage>{{ yorickbigghouldamage }} Magic Attack Damage</magicDamage> plus {{ rghoulnumbers }} <keywordMajor>Mist Walkers</keywordMajor>. The <keywordMajor>Maiden</keywordMajor> automatically raises <keywordMajor>Mist Walkers</keywordMajor> from nearby enemy deaths.<br /><br />When Yorick damages the <keywordMajor>Maiden's</keywordMajor> target, he deals <magicDamage>{{ rmarkdamagepercent }}% max Health magic damage</magicDamage>.<br /><br />After 10 seconds, Yorick can <recast>Recast</recast> this Ability to free the <keywordMajor>Maiden</keywordMajor>, sending her down the nearest lane.{{ spellmodifierdescriptionappend }}",
+          "leveltip": {
+            "label": [
+              "Attack Damage",
+              "Mark Damage",
+              "Mist Walkers",
+              "Cooldown"
+            ],
+            "effect": [
+              "{{ rbigghoulbonusad }} -> {{ rbigghoulbonusadNL }}",
+              "{{ rmarkdamagepercent }}% -> {{ rmarkdamagepercentNL }}%",
+              "{{ rghoulnumbers }} -> {{ rghoulnumbersNL }}",
+              "{{ cooldown }} -> {{ cooldownNL }}"
+            ]
+          },
+          "maxrank": 3,
+          "cooldown": [
+            160,
+            130,
+            100
+          ],
+          "cooldownBurn": "160/130/100",
+          "cost": [
+            100,
+            100,
+            100
+          ],
+          "costBurn": "100",
+          "datavalues": {},
+          "effect": [
+            null,
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "effectBurn": [
+            null,
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "vars": [],
+          "costType": " {{ abilityresourcename }}",
+          "maxammo": "-1",
+          "range": [
+            600,
+            600,
+            600
+          ],
+          "rangeBurn": "600",
+          "image": {
+            "full": "YorickR.png",
+            "sprite": "spell16.png",
+            "group": "spell",
+            "x": 240,
+            "y": 96,
+            "w": 48,
+            "h": 48
+          },
+          "resource": "{{ cost }} {{ abilityresourcename }}"
+        },
+        "old_value": {
+          "id": "YorickR",
+          "name": "Eulogy of the Isles",
+          "description": "Yorick summons the Maiden of the Mist that causes Yorick's attacks against the Maiden's target to deal bonus damage. The Maiden will also automatically raise Walkers from dead enemies.",
+          "tooltip": "Yorick summons the <keywordMajor>Maiden of the Mist</keywordMajor> and {{ rghoulnumbers }} <keywordMajor>Mist Walkers</keywordMajor>. The <keywordMajor>Maiden</keywordMajor> automatically raises <keywordMajor>Mist Walkers</keywordMajor> from nearby enemy deaths.<br /><br />When Yorick damages the <keywordMajor>Maiden's</keywordMajor> target, he deals <magicDamage>{{ rmarkdamagepercent }}% max Health magic damage</magicDamage>.<br /><br />After 10 seconds, Yorick can <recast>Recast</recast> this Ability to free the <keywordMajor>Maiden</keywordMajor>, sending her down the nearest lane.{{ spellmodifierdescriptionappend }}",
+          "leveltip": {
+            "label": [
+              "Mist Walkers",
+              "Mark Damage",
+              "Bonus Attack Damage",
+              "Cooldown"
+            ],
+            "effect": [
+              "{{ rghoulnumbers }} -> {{ rghoulnumbersNL }}",
+              "{{ rmarkdamagepercent }}% -> {{ rmarkdamagepercentNL }}%",
+              "{{ rbigghoulbonusad }} -> {{ rbigghoulbonusadNL }}",
+              "{{ cooldown }} -> {{ cooldownNL }}"
+            ]
+          },
+          "maxrank": 3,
+          "cooldown": [
+            160,
+            130,
+            100
+          ],
+          "cooldownBurn": "160/130/100",
+          "cost": [
+            100,
+            100,
+            100
+          ],
+          "costBurn": "100",
+          "datavalues": {},
+          "effect": [
+            null,
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              0
+            ]
+          ],
+          "effectBurn": [
+            null,
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "vars": [],
+          "costType": " {{ abilityresourcename }}",
+          "maxammo": "-1",
+          "range": [
+            600,
+            600,
+            600
+          ],
+          "rangeBurn": "600",
+          "image": {
+            "full": "YorickR.png",
+            "sprite": "spell16.png",
+            "group": "spell",
+            "x": 240,
             "y": 96,
             "w": 48,
             "h": 48

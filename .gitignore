@@ -184,3 +184,4 @@ data/unsloth_compiled_cache
 *.jsonl
 uv.lock
 data/llama3b-qlora
+unsloth_compiled_cache/*

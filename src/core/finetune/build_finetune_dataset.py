@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import ast
 import random
+import csv
 
 def format_prompt(champion_1, champion_2, lane, allies, enemies, summoner_spells_1, summoner_spells_2, runes_1, keystone_2):
     templates = [
@@ -13,7 +14,7 @@ def format_prompt(champion_1, champion_2, lane, allies, enemies, summoner_spells
     ]
     return random.choice(templates)
 
-def format_completion(early_items, mid_items, late_items):
+def format_completion(early_items, mid_items, late_items, end_items):
     def format_items(items):
         if isinstance(items, list):
             return " -> ".join(items) if items else "No items."
@@ -22,9 +23,10 @@ def format_completion(early_items, mid_items, late_items):
         else:
             return "No items."
     return (
-        f"**Early Game:** {format_items(early_items)}\n"
-        f"**Mid Game:** {format_items(mid_items)}\n"
-        f"**Late Game:** {format_items(late_items)}"
+        f"**Early Game:**\n{format_items(early_items)}\n"
+        f"**Mid Game:**\n{format_items(mid_items)}\n"
+        f"**Late Game:**\n{format_items(late_items)}\n"
+        f"**Final inventory:**\n{format_items(end_items)}"
     )
 
 def main():
@@ -44,9 +46,10 @@ def main():
     for item, changes in item_patch_summary.items():
         for change in changes:
             item_patch_notes.append(f"- {change}")
-    item_patch_notes_text = "**Item Patch Notes:**\n" + "\n".join(item_patch_notes) + "\n\n"
-
-    df = pd.read_csv(input_csv, sep=';')
+    # item_patch_notes_text = "**Item Patch Notes:**\n" + "\n".join(item_patch_notes) + "\n\n"
+    item_patch_notes_text = ''
+        
+    df = pd.read_csv(input_csv, sep=';', quoting=csv.QUOTE_ALL)
     df.fillna('', inplace=True)
     df["ally_champions_1"] = df["ally_champions_1"].apply(ast.literal_eval)
     df["enemy_champions_1"] = df["enemy_champions_1"].apply(ast.literal_eval)
@@ -84,7 +87,8 @@ def main():
             completion = format_completion(
                 row["items_1_early"],
                 row["items_1_mid"],
-                row["items_1_late"]
+                row["items_1_late"],
+                row["items_1_end"]
             )
             record = {"prompt": prompt, "completion": completion}
             json.dump(record, f_out)
