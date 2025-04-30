@@ -103,17 +103,18 @@ rouge = evaluate.load("rouge")
 
 def compute_metrics(eval_pred):
     logits, labels = eval_pred
-    predictions = logits.argmax(dim=-1)
+    predictions = torch.argmax(torch.tensor(logits), dim=-1)
 
-    # Decode
-    decoded_preds = tokenizer.batch_decode(predictions, skip_special_tokens=True)
-    decoded_labels = tokenizer.batch_decode(labels, skip_special_tokens=True)
+    # Batched decoding to reduce memory footprint
+    batch_size = 8
+    decoded_preds, decoded_labels = [], []
+    for i in range(0, len(predictions), batch_size):
+        decoded_preds.extend(tokenizer.batch_decode(predictions[i:i+batch_size], skip_special_tokens=True))
+        decoded_labels.extend(tokenizer.batch_decode(labels[i:i+batch_size], skip_special_tokens=True))
 
-    # Exact Match
     exact_matches = [pred.strip() == label.strip() for pred, label in zip(decoded_preds, decoded_labels)]
     em_score = sum(exact_matches) / len(exact_matches)
 
-    # BLEU and ROUGE
     bleu_result = bleu.compute(predictions=decoded_preds, references=[[l] for l in decoded_labels])
     rouge_result = rouge.compute(predictions=decoded_preds, references=decoded_labels)
 
