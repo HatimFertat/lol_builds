@@ -164,8 +164,7 @@ trainer = SFTTrainer(
     args=training_args,
     train_dataset=train_dataset,
     eval_dataset=val_dataset,
-    data_collator=collator,
-    compute_metrics=compute_metrics,
+    data_collator=collator
 )
 
 trainer.train()
