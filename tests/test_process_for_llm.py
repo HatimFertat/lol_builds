@@ -148,10 +148,74 @@ item_list_5=[{'itemId': 3865, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'tim
 {'itemId': 2055, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 1253017},
 {'itemId': 3109, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 1378866}]
 
+# printing_function(item_list_5)
+
 item_list_6 = [{'itemId': 3865, 'timestamp': 6726, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 2003, 'timestamp': 6726, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 2003, 'timestamp': 6726, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 3340, 'timestamp': 7461, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 2003, 'timestamp': 208997, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 2010, 'timestamp': 209165, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 1001, 'timestamp': 229938, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 231140, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 256900, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 2003, 'timestamp': 359890, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 2010, 'timestamp': 360090, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 1033, 'timestamp': 378232, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 379167, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 3340, 'timestamp': 379401, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 3364, 'timestamp': 379401, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 407241, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 1001, 'timestamp': 439470, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 1033, 'timestamp': 439470, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 3111, 'timestamp': 439470, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 3865, 'timestamp': 450096, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 2010, 'timestamp': 506338, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 3067, 'timestamp': 615210, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1029, 'timestamp': 697919, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1033, 'timestamp': 779932, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 3866, 'timestamp': 997578, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 3867, 'timestamp': 999015, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 3067, 'timestamp': 1029056, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 1029, 'timestamp': 1029056, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 1033, 'timestamp': 1029056, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 3190, 'timestamp': 1029056, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1028, 'timestamp': 1030759, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1028, 'timestamp': 1131900, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 3067, 'timestamp': 1131900, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1132803, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1133070, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1163933, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 1004, 'timestamp': 1216347, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1004, 'timestamp': 1228917, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 3114, 'timestamp': 1228917, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1380669, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 3067, 'timestamp': 1519673, 'phase': 'late', 'action': 'ITEM_DESTROYED'}, {'itemId': 3114, 'timestamp': 1519673, 'phase': 'late', 'action': 'ITEM_DESTROYED'}, {'itemId': 3107, 'timestamp': 1519673, 'phase': 'late', 'action': 'ITEM_PURCHASED'}, {'itemId': 3067, 'timestamp': 1520575, 'phase': 'late', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1521343, 'phase': 'late', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1578487, 'phase': 'late', 'action': 'ITEM_DESTROYED'}]
 
-printing_function(item_list_6)
+# printing_function(item_list_6)
 
 item_list_7 = [{'itemId': 1101, 'timestamp': 24761, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 2508, 'timestamp': 244734, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 3340, 'timestamp': 245669, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 3364, 'timestamp': 245669, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 1052, 'timestamp': 308882, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 1001, 'timestamp': 384544, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 1027, 'timestamp': 385613, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 1052, 'timestamp': 506939, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 1027, 'timestamp': 506939, 'phase': 'early', 'action': 'ITEM_DESTROYED'}, {'itemId': 3802, 'timestamp': 506939, 'phase': 'early', 'action': 'ITEM_PURCHASED'}, {'itemId': 3802, 'timestamp': 716427, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 2508, 'timestamp': 716427, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 2503, 'timestamp': 716427, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 2508, 'timestamp': 718364, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1001, 'timestamp': 893823, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 3020, 'timestamp': 893823, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1028, 'timestamp': 919844, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1101, 'timestamp': 1049441, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 1028, 'timestamp': 1087110, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 3147, 'timestamp': 1087110, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1088546, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1161453, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 3147, 'timestamp': 1209868, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 2508, 'timestamp': 1209868, 'phase': 'mid', 'action': 'ITEM_DESTROYED'}, {'itemId': 6653, 'timestamp': 1209868, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1232557, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1052, 'timestamp': 1321700, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 1028, 'timestamp': 1472291, 'phase': 'mid', 'action': 'ITEM_PURCHASED'}, {'itemId': 2055, 'timestamp': 1569086, 'phase': 'late', 'action': 'ITEM_DESTROYED'}, {'itemId': 1026, 'timestamp': 1654997, 'phase': 'late', 'action': 'ITEM_PURCHASED'}]
 
 # printing_function(item_list_7)
+
+item_list_8 = [{'itemId': 3865, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 3234},
+{'itemId': 2003, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 3735},
+{'itemId': 2003, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 3902},
+{'itemId': 3340, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 4136},
+{'itemId': 2055, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 80962},
+{'itemId': 2055, 'action': 'ITEM_DESTROYED', 'phase': 'early', 'timestamp': 106486},
+{'itemId': 3070, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 273114},
+{'itemId': 2055, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 275987},
+{'itemId': 2003, 'action': 'ITEM_DESTROYED', 'phase': 'early', 'timestamp': 381214},
+{'itemId': 1052, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 394723},
+{'itemId': 3865, 'action': 'ITEM_DESTROYED', 'phase': 'early', 'timestamp': 461707},
+{'itemId': 1004, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 464847},
+{'itemId': 3340, 'action': 'ITEM_DESTROYED', 'phase': 'early', 'timestamp': 465782},
+{'itemId': 3364, 'action': 'ITEM_PURCHASED', 'phase': 'early', 'timestamp': 465782},
+{'itemId': 2003, 'action': 'ITEM_DESTROYED', 'phase': 'early', 'timestamp': 512211},
+{'itemId': 2055, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 612162},
+{'itemId': 3067, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 615919},
+{'itemId': 2055, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 653028},
+{'itemId': 3866, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 774085},
+{'itemId': 3867, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 776857},
+{'itemId': 3067, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 804367},
+{'itemId': 1004, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 804367},
+{'itemId': 1052, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 804367},
+{'itemId': 6620, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 804367},
+{'itemId': 1028, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 806505},
+{'itemId': 1028, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 928109},
+{'itemId': 1011, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 928109},
+{'itemId': 1028, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 1025352},
+{'itemId': 1028, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 1128114},
+{'itemId': 3067, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 1128114},
+{'itemId': 3070, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 1235582},
+{'itemId': 1011, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 1235582},
+{'itemId': 3067, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 1235582},
+{'itemId': 3119, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 1235582},
+{'itemId': 3119, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 1235782},
+{'itemId': 1029, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 1267415},
+{'itemId': 1029, 'action': 'ITEM_SOLD', 'phase': 'mid', 'timestamp': 1393067},
+{'itemId': 3121, 'action': 'ITEM_SOLD', 'phase': 'mid', 'timestamp': 1393334},
+{'itemId': 6620, 'action': 'ITEM_SOLD', 'phase': 'mid', 'timestamp': 1393635},
+{'itemId': 2422, 'action': 'ITEM_SOLD', 'phase': 'mid', 'timestamp': 1393869},
+{'itemId': 3869, 'action': 'ITEM_SOLD', 'phase': 'mid', 'timestamp': 1394303},
+{'itemId': None, 'action': 'ITEM_UNDO', 'phase': 'mid', 'timestamp': 1423445},
+{'itemId': None, 'action': 'ITEM_UNDO', 'phase': 'mid', 'timestamp': 1423579},
+{'itemId': None, 'action': 'ITEM_UNDO', 'phase': 'mid', 'timestamp': 1423746},
+{'itemId': None, 'action': 'ITEM_UNDO', 'phase': 'mid', 'timestamp': 1423913},
+{'itemId': None, 'action': 'ITEM_UNDO', 'phase': 'mid', 'timestamp': 1424042},
+{'itemId': 2422, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 1439293},
+{'itemId': 1029, 'action': 'ITEM_DESTROYED', 'phase': 'mid', 'timestamp': 1439293},
+{'itemId': 3047, 'action': 'ITEM_PURCHASED', 'phase': 'mid', 'timestamp': 1439293},
+{'itemId': 1029, 'action': 'ITEM_PURCHASED', 'phase': 'late', 'timestamp': 1553848},
+{'itemId': 1029, 'action': 'ITEM_PURCHASED', 'phase': 'late', 'timestamp': 1630535},
+{'itemId': 1029, 'action': 'ITEM_DESTROYED', 'phase': 'late', 'timestamp': 1773329},
+{'itemId': 1029, 'action': 'ITEM_DESTROYED', 'phase': 'late', 'timestamp': 1773329},
+{'itemId': 3082, 'action': 'ITEM_PURCHASED', 'phase': 'late', 'timestamp': 1773329},
+{'itemId': 2055, 'action': 'ITEM_PURCHASED', 'phase': 'late', 'timestamp': 1784398},
+{'itemId': 2055, 'action': 'ITEM_SOLD', 'phase': 'late', 'timestamp': 1916627},
+{'itemId': 1036, 'action': 'ITEM_PURCHASED', 'phase': 'late', 'timestamp': 1920135},
+{'itemId': 1036, 'action': 'ITEM_DESTROYED', 'phase': 'late', 'timestamp': 2040788},
+{'itemId': 3134, 'action': 'ITEM_PURCHASED', 'phase': 'late', 'timestamp': 2040788}]
+
+printing_function(item_list_8)
