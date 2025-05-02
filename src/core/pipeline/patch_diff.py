@@ -59,8 +59,9 @@ def get_item_mapping(patch_version):
         if item_info.get("maps").get("11") == True:
             if "from" in item_info: #exclude base items
                 item_mapping[item_id] = item_info.get("name", f"Item {item_id}")
-            elif not "Consumable" in tags and 'Trinket' not in tags: #exclude consumables but keep starter items
-                item_mapping[item_id] = item_info.get("name", f"Item {item_id}")
+            elif "Consumable" not in tags and 'Trinket' not in tags: #exclude consumables but keep starter items
+                name = item_info.get("name", f"Item {item_id}")
+                item_mapping[item_id] = name                    
 
     return item_mapping
 

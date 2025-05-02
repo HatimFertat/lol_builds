@@ -87,6 +87,8 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping, full_item_da
         action_raw = event.get('action', '')
         phase = event.get('phase', '')
         timestamp = event.get('timestamp', 0)
+        #print(f"Processing event: {action_raw} {item_id} at {timestamp}")
+        # print(action_raw, 'avant')
         # Special handling for support item evolution (quest completion) after ITEM_DESTROYED
         # (We need to look ahead to see if the next event is a support item evolution.)
         if action_raw == "ITEM_DESTROYED":
@@ -207,6 +209,18 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping, full_item_da
 
     # final_inventory_list = ", ".join(item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory)
     end_inventory_list = [item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory if iid not in excluded_items]
+    # if len(end_inventory_list) > 6: print(len(end_inventory_list)) # DEBUG
+    if match_id == 'NA1_5259409600' and 'World Atlas' in end_inventory_list:
+        print(f"[DEBUG] Match ID: {match_id}")
+        to_print = []
+        #print by mapping item id to name and keep the timestamp and action fields
+        for event in item_list:
+            item_name = item_mapping.get(event.get('itemId'), f"Unknown{event.get('itemId')}")
+            timestamp = event.get('timestamp', 0)
+            to_print.append({'item_name': item_name, 'action': event.get('action', ''), 'phase': event.get('phase', ''), 'timestamp': (timestamp)})
+            # to_print.append({'itemId': event.get('itemId'), 'action': event.get('action', 'caca'), 'phase': event.get('phase', ''), 'timestamp': (timestamp)})
+            print(to_print[-1])
+
     final_inventory_list = ", ".join(end_inventory_list) if end_inventory_list else "No items."
         
     return early, mid, late, final_inventory_list
