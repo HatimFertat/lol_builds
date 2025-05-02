@@ -30,6 +30,7 @@ def format_completion(early_items, mid_items, late_items, end_items):
     )
 
 def main():
+    import re
     input_csv = "data/llm_ready_dataset.csv"
     output_jsonl = "data/build_finetune_dataset.jsonl"
     # Path("output").mkdir(parents=True, exist_ok=True)
@@ -73,26 +74,36 @@ def main():
                         champ_patch_notes.append(f"- {change}")
             champ_patch_notes_text = "**Champion Patch Notes:**\n" + "\n".join(champ_patch_notes) + "\n\n"
 
-            prompt = champ_patch_notes_text + item_patch_notes_text + format_prompt(
-                row["champion_1"],
-                row["champion_2"],
-                row["lane"],
-                row["ally_champions_1"],
-                row["enemy_champions_1"],
-                row["summoner_spells_1"],
-                row["summoner_spells_2"],
-                row["runes_1"],
-                row["keystone_2"]
-            )
-            completion = format_completion(
-                row["items_1_early"],
-                row["items_1_mid"],
-                row["items_1_late"],
-                row["items_1_end"]
-            )
-            record = {"prompt": prompt, "completion": completion}
-            json.dump(record, f_out)
-            f_out.write("\n")
+            inventory_segments = [row["items_1_early"], row["items_1_mid"], row["items_1_late"], row["items_1_end"]]
+            for segment in inventory_segments:
+                for line in segment.splitlines():
+                    match = re.search(r"Inventory\s*\((\d+)\)", line)
+                    if match and int(match.group(1)) > 6:
+                        break
+                else:
+                    continue
+                break
+            else:
+                prompt = champ_patch_notes_text + item_patch_notes_text + format_prompt(
+                    row["champion_1"],
+                    row["champion_2"],
+                    row["lane"],
+                    row["ally_champions_1"],
+                    row["enemy_champions_1"],
+                    row["summoner_spells_1"],
+                    row["summoner_spells_2"],
+                    row["runes_1"],
+                    row["keystone_2"]
+                )
+                completion = format_completion(
+                    row["items_1_early"],
+                    row["items_1_mid"],
+                    row["items_1_late"],
+                    row["items_1_end"]
+                )
+                record = {"prompt": prompt, "completion": completion}
+                json.dump(record, f_out)
+                f_out.write("\n")
 
 if __name__ == "__main__":
     main()

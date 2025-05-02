@@ -41,6 +41,7 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping, full_item_da
     item_list.sort(key=lambda x: x['timestamp'])
 
     phases = {"early": [], "mid": [], "late": []}
+    LINES_PER_LOG_ENTRY = 3  # action line + inventory snapshot + spacer
 
     # Helper to record an action plus an inventory snapshot for the given phase
     def _log_action(phase_key: str, description: str):
@@ -189,10 +190,13 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping, full_item_da
             if item_id not in excluded_items:
                 _log_action(phase, f"Sell {item_name}")
         elif action_raw == "ITEM_UNDO":
-            # print('hehe undo')
             if inventory_stack:
                 last_action = inventory_stack.pop()
-                last_action_type, last_item_id, *_ = last_action
+                last_action_type = last_action[0]
+                last_item_id = last_action[1]
+                last_phase = last_action[2] if len(last_action) > 2 else phase
+
+                # Reverse the inventory change from the undone action
                 if last_action_type == "Buy":
                     if last_item_id in current_inventory:
                         current_inventory.remove(last_item_id)
@@ -202,23 +206,29 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping, full_item_da
                     if last_item_id in current_inventory:
                         current_inventory.remove(last_item_id)
 
+                # Remove the previously logged description, inventory snapshot, and blank line
+                if last_item_id not in excluded_items and last_phase in phases:
+                    for _ in range(LINES_PER_LOG_ENTRY):
+                        if phases[last_phase]:
+                            phases[last_phase].pop()
+
         # print(action_raw, 'apres')
     early = "\n".join(phases["early"])
     mid = "\n".join(phases["mid"])
     late = "\n".join(phases["late"]) 
 
     # final_inventory_list = ", ".join(item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory)
-    end_inventory_list = [item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory if iid not in excluded_items]
+    end_inventory_list = [item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory if iid not in excluded_items]# + [match_id]
     # if len(end_inventory_list) > 6: print(len(end_inventory_list)) # DEBUG
-    if match_id == 'NA1_5259409600' and 'World Atlas' in end_inventory_list:
+    if match_id == 'BR1_3083781310' and 'Fimbulwinter' in end_inventory_list:
         print(f"[DEBUG] Match ID: {match_id}")
         to_print = []
         #print by mapping item id to name and keep the timestamp and action fields
         for event in item_list:
             item_name = item_mapping.get(event.get('itemId'), f"Unknown{event.get('itemId')}")
             timestamp = event.get('timestamp', 0)
-            to_print.append({'item_name': item_name, 'action': event.get('action', ''), 'phase': event.get('phase', ''), 'timestamp': (timestamp)})
-            # to_print.append({'itemId': event.get('itemId'), 'action': event.get('action', 'caca'), 'phase': event.get('phase', ''), 'timestamp': (timestamp)})
+            # to_print.append({'item_name': item_name, 'action': event.get('action', ''), 'phase': event.get('phase', ''), 'timestamp': (timestamp)})
+            to_print.append({'itemId': event.get('itemId'), 'action': event.get('action', 'caca'), 'phase': event.get('phase', ''), 'timestamp': (timestamp)})
             print(to_print[-1])
 
     final_inventory_list = ", ".join(end_inventory_list) if end_inventory_list else "No items."
