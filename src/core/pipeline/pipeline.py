@@ -8,7 +8,7 @@ import queue
 from tqdm import tqdm
 from threading import Semaphore, Timer
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from config import CURRENT_PATCH_START, REGIONS
+from src.core.pipeline.config import CURRENT_PATCH, REGIONS
 from riot_api import (
     fetch_league_players,
     fetch_match_ids_by_puuid,
@@ -62,7 +62,7 @@ def process_match(region, match_id, short_term_limiter, long_term_limiter):
     if match_detail and timeline:
         records = parse_match_data(match_detail, timeline)
         for record in records:
-            record["patch_start"] = CURRENT_PATCH_START
+            record["patch_start"] = CURRENT_PATCH
             record["region"] = region
             record["match_id"] = match_id
             insert_match_record(conn, record)
@@ -105,7 +105,7 @@ def process_region(region, routing_limiters):
             try:
                 short_term_limiter.acquire()
                 long_term_limiter.acquire()
-                match_ids = fetch_match_ids_by_puuid(region, puuid, CURRENT_PATCH_START, count=MATCHES_PER_PUUID)
+                match_ids = fetch_match_ids_by_puuid(region, puuid, CURRENT_PATCH, count=MATCHES_PER_PUUID)
                 # logger.info(f"PUUID {puuid}: Retrieved {len(match_ids)} match IDs.")
                 all_match_ids.extend(match_ids)
             except Exception as e:

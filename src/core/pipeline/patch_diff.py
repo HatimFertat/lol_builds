@@ -2,7 +2,7 @@ import requests
 import json
 from deepdiff import DeepDiff
 import os
-from config import CURRENT_PATCH, PREVIOUS_PATCH
+from src.core.pipeline.config import CURRENT_PATCH, PREVIOUS_PATCH
 
 # Base URLs
 BASE_URL = "https://ddragon.leagueoflegends.com/cdn/{patch}/data/en_US/"

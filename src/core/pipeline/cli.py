@@ -2,8 +2,8 @@
 
 import argparse
 import logging
-from config import CURRENT_PATCH_START, REGIONS
-from pipeline import process_region, RateLimiter
+from src.core.pipeline.config import CURRENT_PATCH, REGIONS
+from src.core.pipeline.pipeline import process_region, RateLimiter
 import threading
 from tqdm import tqdm
 import os
@@ -47,7 +47,7 @@ for routing in set(region_info['routing'] for region_info in REGIONS.values()):
 def main():
     parser = argparse.ArgumentParser(description="Process League of Legends match data.")
     parser.add_argument('--regions', nargs='*', default=list(REGIONS.keys()), help='List of regions to process')
-    parser.add_argument('--patch', type=int, default=CURRENT_PATCH_START, help='Patch start timestamp (Unix time)')
+    parser.add_argument('--patch', type=int, default=CURRENT_PATCH, help='Patch start timestamp (Unix time)')
     args = parser.parse_args()
 
     threads = []

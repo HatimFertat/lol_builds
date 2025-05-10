@@ -3,8 +3,7 @@ import pandas as pd
 import json
 import ast
 import csv
-# from src.core.pipeline.config import CURRENT_PATCH
-CURRENT_PATCH = "15.7.1"
+from src.core.pipeline.config import CURRENT_PATCH
 #CLI: export PYTHONPATH=/home/hatim/data/sourcegit/lol_builds
 
 DATABASE_PATH = "data/matches.db"

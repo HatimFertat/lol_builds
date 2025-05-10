@@ -1,5 +1,7 @@
 # config.py
 from dotenv import load_dotenv
+import requests
+import logging
 import os
 load_dotenv(dotenv_path='.env')
 
@@ -24,6 +26,24 @@ RANKED_SOLO_QUEUE_ID = 420
 
 # Define the start of the current patch (Unix timestamp).
 # Update this timestamp at each new patch cycle.
-CURRENT_PATCH_START = 1743552000  # example timestamp, update per patch
-CURRENT_PATCH = "15.7.1"  # Current patch version
-PREVIOUS_PATCH = "15.6.1"  # Previous patch version
+PATCH_URL = "https://ddragon.leagueoflegends.com/api/versions.json"
+
+def get_current_previous_patch():
+    """
+    Fetches the current patch version from the Riot API.
+    """
+    try:
+        response = requests.get(PATCH_URL)
+        response.raise_for_status()
+        versions = response.json()
+        if versions:
+            return versions[0], versions[1]
+        else:
+            raise ValueError("No versions found in the response.")
+    except requests.RequestException as e:
+        print(f"Error fetching current patch: {e}")
+        return None
+    
+CURRENT_PATCH, PREVIOUS_PATCH = get_current_previous_patch()
+os.environ["CURRENT_PATCH"] = CURRENT_PATCH
+os.environ["PREVIOUS_PATCH"] = PREVIOUS_PATCH
