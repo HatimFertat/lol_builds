@@ -41,6 +41,7 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping, full_item_da
     item_list.sort(key=lambda x: x['timestamp'])
 
     phases = {"early": [], "mid": [], "late": []}
+    LINES_PER_LOG_ENTRY = 3  # action line + inventory snapshot + spacer
 
     # Helper to record an action plus an inventory snapshot for the given phase
     def _log_action(phase_key: str, description: str):
@@ -87,6 +88,8 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping, full_item_da
         action_raw = event.get('action', '')
         phase = event.get('phase', '')
         timestamp = event.get('timestamp', 0)
+        #print(f"Processing event: {action_raw} {item_id} at {timestamp}")
+        # print(action_raw, 'avant')
         # Special handling for support item evolution (quest completion) after ITEM_DESTROYED
         # (We need to look ahead to see if the next event is a support item evolution.)
         if action_raw == "ITEM_DESTROYED":
@@ -187,10 +190,13 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping, full_item_da
             if item_id not in excluded_items:
                 _log_action(phase, f"Sell {item_name}")
         elif action_raw == "ITEM_UNDO":
-            # print('hehe undo')
             if inventory_stack:
                 last_action = inventory_stack.pop()
-                last_action_type, last_item_id, *_ = last_action
+                last_action_type = last_action[0]
+                last_item_id = last_action[1]
+                last_phase = last_action[2] if len(last_action) > 2 else phase
+
+                # Reverse the inventory change from the undone action
                 if last_action_type == "Buy":
                     if last_item_id in current_inventory:
                         current_inventory.remove(last_item_id)
@@ -200,13 +206,20 @@ def flatten_items_by_phase(item_list, item_mapping, recipe_mapping, full_item_da
                     if last_item_id in current_inventory:
                         current_inventory.remove(last_item_id)
 
+                # Remove the previously logged description, inventory snapshot, and blank line
+                if last_item_id not in excluded_items and last_phase in phases:
+                    for _ in range(LINES_PER_LOG_ENTRY):
+                        if phases[last_phase]:
+                            phases[last_phase].pop()
+
         # print(action_raw, 'apres')
     early = "\n".join(phases["early"])
     mid = "\n".join(phases["mid"])
     late = "\n".join(phases["late"]) 
 
     # final_inventory_list = ", ".join(item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory)
-    end_inventory_list = [item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory if iid not in excluded_items]
+    end_inventory_list = [item_mapping.get(iid, f"Unknown{iid}") for iid in current_inventory if iid not in excluded_items]# + [match_id]
+
     final_inventory_list = ", ".join(end_inventory_list) if end_inventory_list else "No items."
         
     return early, mid, late, final_inventory_list
